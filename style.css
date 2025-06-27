@@ -1,0 +1,109 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body{
+  font-family: Arial;
+  position: relative;
+}
+
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  background-color: #d39696;
+  align-items: center;
+  padding: 20px 20px;
+}
+
+nav .logo{
+  font-size: 28px;
+  color: white;
+}
+
+nav ul{
+  display: flex;
+  list-style: none;
+  width: 30%;
+  justify-content: space-between;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+nav .hamburger{
+  display: none;
+  width: 40px;
+  height: 25px;
+}
+
+/* ... CSS di atasnya ... */
+
+@media (max-width: 768px){
+  nav ul{
+    position: fixed; /* Gunakan fixed agar tidak terpengaruh scroll body */
+    top: 0;
+    right: -100%; /* Sembunyikan di luar layar di kanan secara default */
+    flex-direction: column;
+    height: 100vh; /* Penuhi tinggi viewport */
+    background-color: #d39696;
+    width: 70%; /* Lebar menu saat terbuka */
+    max-width: 300px; /* Batasi lebar maksimum */
+    justify-content: center; /* Pusatkan item secara vertikal */
+    align-items: center;
+    padding-top: 60px; /* Beri ruang di atas untuk header */
+    transition: right 0.4s ease-in-out; /* Transisi animasi geser */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Bayangan untuk efek sidebar */
+    z-index: 99; /* Di bawah hamburger */
+  }
+
+  nav ul li {
+    margin: 20px 0; /* Jarak vertikal antar item */
+  }
+
+  nav ul li a {
+    font-size: 22px;
+    color: white; /* Ubah warna teks agar terlihat di background hijau */
+  }
+
+  /* KOREKSI: Ini adalah kelas yang akan di-toggle oleh JS */
+  nav ul.active { /* Ubah dari .open menjadi .active */
+    right: 0; /* Geser menu ke dalam layar */
+  }
+
+  nav .hamburger{
+    display: flex; /* Tampilkan hamburger di mobile */
+    /* Tambahkan pengaturan untuk animasi X pada span */
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 101; /* Pastikan di atas menu saat mobile */
+  }
+
+  nav .hamburger span{
+    background-color: white;
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out; /* Tambahkan transisi */
+  }
+
+  /* Animasi ikon hamburger menjadi X */
+  nav .hamburger.active span:nth-child(2) {
+    opacity: 0; /* Sembunyikan bar tengah */
+  }
+
+  nav .hamburger.active span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+
+  nav .hamburger.active span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
